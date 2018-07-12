@@ -3,24 +3,27 @@
   <view class="bless_img">
     <image src="/images/mail.png" />
   </view>
-  <view class="title" wx:if="{{zanNum > 0}}">已收到 {{zanNum}} 位好友的祝福</view>
-  <view class="title" wx:if="{{zanNum == 0}}"> 点击下方按钮可送上祝福 </view>
+  <view class="title" wx:if="{{zanNum > 0}}">已收到 {{zanNum}} 位好友的 {{all_count}} 次祝福</view>
+  <view class="title" wx:if="{{zanNum == 0}}"> 点击下方爱心按钮可送上祝福 </view>
   <view class="friends">
     <view class="face" wx:for="{{list}}" wx:key="user">
       <image src="{{item.avatar_url}}" />
       <view class="count">{{item.blessing_count}}</view>
     </view>
   </view>
-  <view class="btn_zone">
-    <image class="bless {{ani ? 'bless_ani' : ''}}" src="/images/bless.png" />
-    <button type="primary" bindtap='bless' class="btn">
-      <image class="btn-bless" src="/images/bless.png" />
-    </button>
-    <!-- <view class="zan fl">
-      
-    </view> -->
-    <!-- <view class="share fr">
-      <button type="default" open-type="share">分享</button>
-    </view> -->
+
+  <view class="v-bubbling">
+    <canvas
+      canvas-id="canvas_wi"
+      style="{{canvas_style}}"
+      class="myCanvas"
+    />
+    <image
+      src="/images/heart_button.png"
+      class="bt-img"
+      bindtap="onClickImage"
+      style="{{style_img}}"
+    />
   </view>
+
 </view>

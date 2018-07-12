@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/bless/bless",
     "pages/index/index",
     "pages/chat/chat",
     "pages/invitation/invitation",
+    "pages/bless/bless",
     "pages/map/map",
     "pages/auth/auth"
   ],

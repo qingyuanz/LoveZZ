@@ -54,8 +54,8 @@ Page({
         id: 0,
         latitude: latitude,
         longitude: longitude,
-        width: 50,
-        height: 50
+        width: 40,
+        height: 40
       }]
     })
   },

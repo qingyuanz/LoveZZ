@@ -1,4 +1,5 @@
 // pages/index/index.js
+var util = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -31,6 +32,10 @@ Page({
     }
   },
 
+  onShow: function() {
+    console.log('index onShow')
+  },
+
   _setData: function(vmData) {
     this.setData({
       mainInfo: vmData.main_info,
@@ -48,13 +53,6 @@ Page({
         coverImgUrl: ''
       })
     }
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
 
   },
 

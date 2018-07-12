@@ -1,4 +1,6 @@
 // pages/chat/chat.js
+var util = require('../../utils/util.js')
+
 var app = getApp()
 Page({
   /**
@@ -15,9 +17,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getMsgList()
   },
 
+  onShow:function(){
+    this.getMsgList()
+    if (!util.isGetToken()) {
+      util.getToken()
+    }
+  },
+  
   getMsgList: function() {
     console.log('-> getMsgList')
     var that = this
@@ -44,7 +52,7 @@ Page({
       var item = {
         'face': data['user']['avatar_url'],
         'nickname': data['user']['nickname'],
-        'time': data['user']['created_at'],
+        'time': data['msg']['created_at'],
         'words': data['msg']['content']
       }
       mList.push(item)
@@ -76,6 +84,13 @@ Page({
         },
         success: function(res) {
           console.log(res.data)
+          if (res.statusCode != 200) {
+            if (res.statusCode == 401) {
+              wx.removeStorageSync('token')
+            }
+            return
+          }
+
           that.parseBlessMsg(res.data)
         },
         fail: function(error) {
@@ -103,7 +118,7 @@ Page({
       'words': data['msg']['content']
     }
 
-    this.data.chatList.push(item)
+    this.data.chatList.unshift(item)
     this.setData({
       'chatNum': this.data.chatList.length,
       'chatList': this.data.chatList
