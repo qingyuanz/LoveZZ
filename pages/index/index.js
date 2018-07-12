@@ -19,6 +19,7 @@ Page({
    */
   onLoad: function(options) {
     console.log('index onLoad')
+    util.getAuth()
     var that = this
     if (app.globalData.g_vmData != null) {
       var vmData = app.globalData.g_vmData
@@ -34,6 +35,9 @@ Page({
 
   onShow: function() {
     console.log('index onShow')
+    if (!util.isGetToken()) {
+      util.getToken()
+    }
   },
 
   _setData: function(vmData) {

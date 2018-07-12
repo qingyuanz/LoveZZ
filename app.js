@@ -2,10 +2,11 @@ var util = require('/utils/util.js')
 
 App({
   onLaunch: function() {
-    util.getAuth()
+    
   },
 
   onShow: function(){
+    console.log('app onShow')
     this._getIndexVMData()
   },
 

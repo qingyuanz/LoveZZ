@@ -61,17 +61,18 @@ const getToken = function() {
             _getToken(code, iv, encryptedData)
           },
           fail: function(error) {
-            wx.showModal({
-              title: '注意',
-              showCancel: false,
-              confirmText: '授权',
-              content: '为了您更好的体验,请先同意授权',
-              success: function(res) {
-                wx.navigateTo({
-                  url: '/pages/auth/auth'
-                })
-              }
-            })
+            console.log(error)
+            // wx.showModal({
+            //   title: '注意',
+            //   showCancel: false,
+            //   confirmText: '授权',
+            //   content: '为了您更好的体验,请先同意授权',
+            //   success: function(res) {
+            //     wx.navigateTo({
+            //       url: '/pages/auth/auth'
+            //     })
+            //   }
+            // })
           },
           complete: function() {}
         })
@@ -86,16 +87,20 @@ const getToken = function() {
 const getAuth = function() {
   var that = this
   var app = getApp()
-  console.log('-> login')
+  console.log('-> getAuth')
 
   wx.getSetting({
     success: (res) => {
       if (!res.authSetting['scope.userInfo']) {
+        console.log('navigate to auth page')
         // 没有授权跳到授权页
         wx.navigateTo({
           url: '/pages/auth/auth'
         })
       }
+    },
+    fail: (error)=>{
+      console.log(error)
     }
   })
 }

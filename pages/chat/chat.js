@@ -87,6 +87,10 @@ Page({
           if (res.statusCode != 200) {
             if (res.statusCode == 401) {
               wx.removeStorageSync('token')
+              wx.showToast({
+                icon: 'none',
+                title: '抱歉！留言失败！请重新打开小程序授权'
+              })
             }
             return
           }
