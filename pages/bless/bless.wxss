@@ -6,7 +6,6 @@
 }
 .friends {
   min-height: 0;
-  overflow: hidden;
   width: 600rpx;
   margin: 0 auto;
   margin-top: 20rpx;
@@ -16,20 +15,71 @@
   height: 100rpx;
   float: left;
   margin: 10rpx;
+  position: relative;
 }
 .face image {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
 }
+.face > .count{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10rpx;
+  right: -10rpx;
+  background: red;
+  font-size: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bless{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 50rpx;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s linear;
+}
+
+.btn-bless{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.bless_ani{
+  opacity: 0;
+  transform: translateY(-250%) scale(2);
+}
+
 .btn_zone {
-  padding: 30rpx 50rpx;
-  border-top: 1px solid #f1f1f1;
+  /* padding: 30rpx 50rpx;
   border-bottom: 1px solid #f1f1f1;
   min-height: 0;
   overflow: hidden;
-  margin-top: 20rpx;
+  margin-top: 20rpx; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 20px 0;
 }
+
+.btn{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .zan {
   width: 400rpx;
 }

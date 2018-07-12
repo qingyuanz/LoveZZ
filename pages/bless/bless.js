@@ -9,7 +9,9 @@ Page({
    */
   data: {
     zanNum: 0,
-    zanLog: []
+    zanLog: [],
+    list: [],
+    ani: false
   },
 
   /**
@@ -30,8 +32,9 @@ Page({
         "content-type": "application/json"
       },
       success: function(res) {
-        console.log(res.data)
-        that.parseBlessList(res.data)
+        that.setData({
+          list: res.data
+        })
       },
       fail: function(error) {
         console.log(error)
@@ -43,6 +46,7 @@ Page({
     var bList = []
     blessList.forEach(function(data) {
       var item = {
+        'openid': data['openid'],
         'face': data['avatar_url'],
         'blessing_count': data['blessing_count']
       }
@@ -60,6 +64,9 @@ Page({
     var that = this
     var indexVMUrl = app.globalData.apiBaseUrl + "/v1/index/blessing"
     var token = 'Bearer ' + app.globalData.g_token
+
+    that.setData({ ani: true })
+
     wx.request({
       url: indexVMUrl,
       method: 'POST',
@@ -68,8 +75,22 @@ Page({
         "Authorization": token
       },
       success: function(res) {
-        console.log(res.data)
-        that.parseBless(res.data)
+        const list = that.data.list.map(item => item);
+        function getIndex(openid) {
+          for (let i = 0; i < list.length; i += 1) {
+            if (list[i].openid === openid) {
+              return i;
+            }
+          }
+          return -1;
+        }
+        const index = getIndex(res.data.openid);
+        if (index > 0) {
+          list[index] = res.data;
+        } else {
+          list.push(res.data);
+        }
+        that.setData({ list });
       },
       fail: function(error) {
         console.log('error', error)
@@ -77,17 +98,24 @@ Page({
     })
   },
 
-  parseBless: function(data) {
+  setList: function(data) {
     var item = {
+      'openid': data['openid'],
       'face': data['avatar_url'],
       'blessing_count': data['blessing_count']
     }
+    const list = this.data.zanLog;
+    list.every(function () {
 
-    this.data.zanLog.push(item)
+    });
     this.setData({
       'zanNum': this.data.zanLog.length,
       'zanLog': this.data.zanLog
     })
+  },
+
+  parseBless: function(data) {
+    this.setList(data)
   },
 
   /**
