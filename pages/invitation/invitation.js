@@ -1,4 +1,6 @@
 // pages/invitation/invitation.js
+var util = require('../../utils/util.js')
+
 const app = getApp()
 
 Page({
@@ -33,15 +35,17 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onShow: function () {
+    if (!util.isGetToken()) {
+      util.getToken()
+    }
   },
   
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    util.shareApp()
   },
 
   callhe: function (event) {

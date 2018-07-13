@@ -81,7 +81,7 @@ Page({
     console.log('-> getBlessings')
     var that = this
     var indexVMUrl = app.globalData.apiBaseUrl + "/v1/index/blessing"
-    var token = 'Bearer ' + app.globalData.g_token
+    var token = 'Bearer ' + wx.getStorageSync('token') || ''
     wx.request({
       url: indexVMUrl,
       method: 'POST',
@@ -92,7 +92,7 @@ Page({
       success: function(res) {
         if (res.statusCode != 200) {
           if (res.statusCode == 401) {
-            wx.removeStorageSync('token')
+            // wx.removeStorageSync('token')
             wx.showToast({
               icon: 'none',
               title: '抱歉！祝福失败！请重新打开小程序授权'
@@ -125,10 +125,11 @@ Page({
           all_count: all_bless
         })
 
-        wx.showToast({
-          icon: 'none',
-          title: '谢谢祝福！'
-        })
+        // wx.showToast({
+        //   icon: 'none',
+        //   duration: 1000,
+        //   title: '谢谢祝福！'
+        // })
       },
       fail: function(error) {
         console.log('error', error)
@@ -311,6 +312,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    util.shareApp()
   }
 })

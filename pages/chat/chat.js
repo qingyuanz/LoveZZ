@@ -2,6 +2,9 @@
 var util = require('../../utils/util.js')
 
 var app = getApp()
+
+
+
 Page({
   /**
    * 页面的初始数据
@@ -68,7 +71,7 @@ Page({
     console.log('-> blessMsg')
     var that = this
     var msgUrl = app.globalData.apiBaseUrl + "/v1/index/message"
-    var token = 'Bearer ' + app.globalData.g_token
+    var token = 'Bearer ' + wx.getStorageSync('token') || ''
 
     if (that.data.inputValue) {
       var words = that.data.inputValue
@@ -86,7 +89,7 @@ Page({
           console.log(res.data)
           if (res.statusCode != 200) {
             if (res.statusCode == 401) {
-              wx.removeStorageSync('token')
+              // wx.removeStorageSync('token')
               wx.showToast({
                 icon: 'none',
                 title: '抱歉！留言失败！请重新打开小程序授权'
@@ -140,6 +143,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    util.shareApp()
   }
 })

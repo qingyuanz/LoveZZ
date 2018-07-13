@@ -1,8 +1,10 @@
 <!--pages/auth/auth.wxml-->
 <view class="auth">
-  <image src="/images/wechat.png" class="img" mode="aspectFill"></image>
-  <view class="title">微信授权页面</view>
-  <view class="describe">此页面是微信授权页面，点击下方按钮弹出授权或跳转页面</view>
+  <image src="/images/touxiang1.png" class="img" mode="aspectFill"></image>
+  <!-- <view class="title">微信授权页面</view>
+  <view class="describe">郑庆元与周迎洁的婚礼邀请，请微信授权</view> -->
+  <view class="title">郑庆元与周迎洁的婚礼邀请</view>
+  <view class="title">请微信授权</view>
   <button class="btn" open-type='getUserInfo' wx:if="{{canIUse}}" bindgetuserinfo='bindGetUserInfo'>授权登录</button>
    <view wx:else>请升级微信版本</view>
 </view>

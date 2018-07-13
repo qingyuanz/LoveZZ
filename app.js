@@ -40,7 +40,7 @@ App({
 
   globalData: {
     g_isPlayingMusic: true,
-    apiBaseUrl: "https://wx.thomasx.top",
+    apiBaseUrl: "https://wx.chinajueqi.com",
     g_token: null,
     g_vmData: null,
   }

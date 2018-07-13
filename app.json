@@ -42,13 +42,13 @@
         "pagePath": "pages/bless/bless",
         "iconPath": "images/4.png",
         "selectedIconPath": "images/4.png",
-        "text": "好友祝福"
+        "text": "点赞祝福"
       },
       {
         "pagePath": "pages/chat/chat",
         "iconPath": "images/5.png",
         "selectedIconPath": "images/5.png",
-        "text": "留言评论"
+        "text": "留言祝福"
       }
     ]
   }

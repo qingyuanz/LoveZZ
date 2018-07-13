@@ -44,7 +44,7 @@ const _getToken = function (code, iv, encryptedData) {
 const getToken = function() {
   var that = this
   var app = getApp()
-  console.log('-> login')
+  console.log('-> getToken')
 
   wx.login({
     success: function(res) {
@@ -108,9 +108,34 @@ const getAuth = function() {
 const isGetToken = function() {
   var token = wx.getStorageSync('token')
   if (!token || token == '') {
+    console.log('not have token')
     return false
   } else {
+    console.log('already have token')
+    console.log(token)
     return true
+  }
+}
+
+const shareApp = function(){
+  var that = this
+  var app = getApp()
+  console.log('share app')
+  return {
+    title: app.globalData.g_vmData.main_info.share,
+    imageUrl: app.globalData.g_vmData.main_info.thumb,
+    path: 'pages/index/index',
+    success: function (res) {
+      wx.showToast({
+        title: '分享成功',
+      })
+    },
+    fail: function (res) {
+      // 转发失败
+      wx.showToast({
+        title: '分享取消',
+      })
+    }
   }
 }
 
@@ -118,5 +143,6 @@ module.exports = {
   formatTime: formatTime,
   isGetToken: isGetToken,
   getAuth: getAuth,
-  getToken: getToken
+  getToken: getToken,
+  shareApp: shareApp
 }

@@ -1,4 +1,5 @@
 // pages/map/map.js
+var util = require('../../utils/util.js')
 const app = getApp()
 
 Page({
@@ -8,6 +9,14 @@ Page({
    */
   data: {
   },
+
+  onShow: function () {
+    console.log('map onShow')
+    if (!util.isGetToken()) {
+      util.getToken()
+    }
+  },
+
   markertap(e) {
     console.log('markertap', e)
 
@@ -64,6 +73,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    util.shareApp()
   }
 })
